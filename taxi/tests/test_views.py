@@ -196,27 +196,27 @@ class CarModelSearchTest(TestCase):
         self.assertContains(response, "Civic")
 
     def test_pagination_with_search(self):
-        for i in range(10):
-            Car.objects.create(model=f"Model{i}",
+        for index in range(10):
+            Car.objects.create(model=f"Model{index}",
                                manufacturer=self.manufacturer1)
 
         response_first_page = self.client.get(
             reverse("taxi:car-list"), {"model": "Model", "page": 1}
         )
         self.assertEqual(response_first_page.status_code, 200)
-        for i in range(5):
-            self.assertContains(response_first_page, f"Model{i}")
-        for i in range(5, 10):
-            self.assertNotContains(response_first_page, f"Model{i}")
+        for index in range(5):
+            self.assertContains(response_first_page, f"Model{index}")
+        for index in range(5, 10):
+            self.assertNotContains(response_first_page, f"Model{index}")
 
         response_second_page = self.client.get(
             reverse("taxi:car-list"), {"model": "Model", "page": 2}
         )
         self.assertEqual(response_second_page.status_code, 200)
-        for i in range(5, 10):
-            self.assertContains(response_second_page, f"Model{i}")
-        for i in range(5):
-            self.assertNotContains(response_second_page, f"Model{i}")
+        for index in range(5, 10):
+            self.assertContains(response_second_page, f"Model{index}")
+        for index in range(5):
+            self.assertNotContains(response_second_page, f"Model{index}")
 
 
 class DriverUsernameSearchTest(TestCase):

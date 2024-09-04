@@ -19,7 +19,8 @@ class ModelsTests(TestCase):
         )
         self.assertEqual(
             str(driver),
-            f"{driver.username} ({driver.first_name} {driver.last_name})")
+            f"{driver.username} ({driver.first_name} {driver.last_name})"
+        )
 
     def test_car_str(self):
         manufacturer = Manufacturer.objects.create(name="test", country="USA")
